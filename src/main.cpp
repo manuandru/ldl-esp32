@@ -21,13 +21,14 @@ void setup() {
   Serial.println("ssid: " + ssid);
   Serial.println("password: " + password);
 
-  // if (ssid.length() == 0 || password.length() == 0) {
-  Serial.println("No WiFi credentials found.");
-  appState = new APWebServer(ringLed);
-  // } else {
-  // Serial.println("WiFi credentials found.");
-  // appState = new RingLedApp(ssid, password);
-  // }
+  if (ssid.length() == 0 && password.length() == 0) {
+    Serial.println("No WiFi credentials found.");
+    appState = new APWebServer(ringLed);
+  } else {
+    ringLed->setCredentialsProvidedColor();
+    Serial.println("WiFi credentials found.");
+    appState = new RingLedApp(ssid, password);
+  }
 }
 
 void loop() {}

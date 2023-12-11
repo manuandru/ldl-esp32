@@ -16,6 +16,9 @@ public:
   RingLedApp(String ssid, String password) {
     this->ssid = ssid;
     this->password = password;
+
+    Serial.println("ssid: " + ssid);
+    Serial.println("password: " + password);
   };
 
   void setup() {
