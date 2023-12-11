@@ -1,5 +1,5 @@
-#include "ap-webserver.cpp"
-#include "ringled-app.cpp"
+#include "app-state/ap-webserver/ap-webserver.h"
+#include "app-state/ringled-app.cpp"
 #include <Arduino.h>
 #include <Preferences.h>
 
@@ -9,7 +9,7 @@ void setup() {
   Serial.begin(9600);
   while (!Serial) {
   }
-
+  RingLed *ringLed = new RingLed();
   delay(1000);
 
   Preferences preferences;
@@ -22,14 +22,12 @@ void setup() {
   Serial.println("password: " + password);
 
   // if (ssid.length() == 0 || password.length() == 0) {
-  // Serial.println("No WiFi credentials found.");
-  // appState = new APWebServer();
+  Serial.println("No WiFi credentials found.");
+  appState = new APWebServer(ringLed);
   // } else {
-  Serial.println("WiFi credentials found.");
-  appState = new RingLedApp(ssid, password);
+  // Serial.println("WiFi credentials found.");
+  // appState = new RingLedApp(ssid, password);
   // }
-
-  appState->setup();
 }
 
-void loop() { appState->loop(); }
+void loop() {}

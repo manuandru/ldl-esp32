@@ -1,57 +1,23 @@
-#include "app-state.h"
-#include <Arduino.h>
-#include <Preferences.h>
+#ifndef AP_WEBSERVER_H
+#define AP_WEBSERVER_H
+
+#include "../app-state.h"
 #include <WebServer.h>
-#include <WiFi.h>
+#include <ring-led/ring-led.h>
 
 class APWebServer : public AppState {
-private:
+public:
+  APWebServer(RingLed *ringLed);
   WebServer server{80};
+  void handleRoot();
+  void handleCredentialsSetup();
+  void handleNotFound();
+
+private:
   const char *ssid = "ESP32-Access-Point";
   const char *password = "12345678";
+  RingLed *ringLed;
 
-public:
-  APWebServer(){};
-  void setup() {
-    WiFi.softAP(ssid, password);
-    IPAddress myIP = WiFi.softAPIP();
-    Serial.print("AP IP address: ");
-    Serial.println(myIP);
-
-    server.begin();
-    server.on("/", HTTP_GET, std::bind(&APWebServer::handleRoot, this));
-    server.on("/setup", HTTP_POST,
-              std::bind(&APWebServer::handleCredentialsSetup, this));
-    server.onNotFound(std::bind(&APWebServer::handleNotFound, this));
-
-    Serial.println("Server started");
-  }
-
-  void handleRoot() { server.send(200, "text/html", html); }
-
-  void handleCredentialsSetup() {
-    String ssid = server.arg("ssid");
-    String password = server.arg("password");
-
-    Serial.println("ssid: " + ssid);
-    Serial.println("password: " + password);
-
-    Preferences preferences;
-    preferences.begin("wifi", false);
-    preferences.putString("ssid", ssid);
-    preferences.putString("password", password);
-    preferences.end();
-
-    server.send(200, "text/html", okHtml);
-    delay(1000);
-    ESP.restart();
-  }
-
-  void handleNotFound() { server.send(404, "text/plain", "Not found"); }
-
-  void loop() { server.handleClient(); }
-
-private:
   String html = R"(
 <!DOCTYPE html>
 <html lang="en">
@@ -177,3 +143,5 @@ private:
 </html>
     )";
 };
+
+#endif
