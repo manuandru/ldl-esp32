@@ -38,6 +38,14 @@ void ringLedStateTask(void *parameter) {
       vTaskDelay(pdMS_TO_TICKS(100));
       backFading(255, 50, 0, 2);
       vTaskDelay(pdMS_TO_TICKS(100));
+      break;
+    case CREDENTIALS_PROVIDED:
+      // fade with light blue
+      fading(0, 200, 255, 2);
+      vTaskDelay(pdMS_TO_TICKS(100));
+      backFading(0, 200, 255, 2);
+      vTaskDelay(pdMS_TO_TICKS(100));
+      break;
     }
 
     // Serial.println("Counter: " + String(counter++));

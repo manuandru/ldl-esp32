@@ -6,6 +6,7 @@ public:
   RingLed();
   void setCredentialsMissingColor();
   void setSiteConnectedColor();
+  void setCredentialsProvidedColor();
 };
 
 #endif

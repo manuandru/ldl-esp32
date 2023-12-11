@@ -23,3 +23,9 @@ void RingLed::setSiteConnectedColor() {
   state = SITE_CONNECTED;
   xSemaphoreGive(mutex);
 }
+
+void RingLed::setCredentialsProvidedColor() {
+  xSemaphoreTake(mutex, portMAX_DELAY);
+  state = CREDENTIALS_PROVIDED;
+  xSemaphoreGive(mutex);
+}

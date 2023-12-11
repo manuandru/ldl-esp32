@@ -39,6 +39,8 @@ void APWebServer::handleRoot() {
 }
 
 void APWebServer::handleCredentialsSetup() {
+  this->ringLed->setCredentialsProvidedColor();
+
   String ssid = server.arg("ssid");
   String password = server.arg("password");
 
@@ -52,7 +54,7 @@ void APWebServer::handleCredentialsSetup() {
   preferences.end();
 
   server.send(200, "text/html", okHtml);
-  delay(1000);
+  delay(5000);
   ESP.restart();
 }
 

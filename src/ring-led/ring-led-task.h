@@ -5,7 +5,12 @@
 #include <Arduino.h>
 #include <freertos/FreeRTOS.h>
 
-enum RingLedState { STARTING, CREDENTIALS_MISSING, SITE_CONNECTED };
+enum RingLedState {
+  STARTING,
+  CREDENTIALS_MISSING,
+  SITE_CONNECTED,
+  CREDENTIALS_PROVIDED,
+};
 extern SemaphoreHandle_t mutex;
 extern Adafruit_NeoPixel ring;
 extern RingLedState state;
