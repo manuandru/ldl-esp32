@@ -49,5 +49,5 @@
     "streambuf": "cpp",
     "cinttypes": "cpp"
   },
-  "cSpell.words": ["Adafruit", "APIP", "WEBSERVER"]
+  "cSpell.words": ["Adafruit", "APIP", "RINGLED", "WEBSERVER"]
 }

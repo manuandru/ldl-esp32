@@ -8,7 +8,6 @@ void handleClientTask(void *parameter) {
   WebServer *server = (WebServer *)parameter;
   while (1) {
     server->handleClient();
-    delay(1);
   }
 }
 
