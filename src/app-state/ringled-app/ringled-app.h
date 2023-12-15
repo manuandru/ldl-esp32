@@ -1,6 +1,7 @@
 #ifndef RINGLED_APP_H
 #define RINGLED_APP_H
 
+#include <Arduino.h>
 #include <app-state/app-state.h>
 #include <ring-led/ring-led.h>
 

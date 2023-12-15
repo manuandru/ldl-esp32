@@ -10,6 +10,7 @@ enum RingLedState {
   CREDENTIALS_MISSING,
   SITE_CONNECTED,
   CREDENTIALS_PROVIDED,
+  WIFI_CONNECTION_ERROR
 };
 extern SemaphoreHandle_t mutex;
 extern Adafruit_NeoPixel ring;

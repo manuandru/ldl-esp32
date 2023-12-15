@@ -1,7 +1,9 @@
 #include "app-state/ap-webserver/ap-webserver.h"
-#include "app-state/ringled-app.cpp"
+#include "app-state/ringled-app/ringled-app.h"
+#include "ring-led/ring-led.h"
 #include <Arduino.h>
 #include <Preferences.h>
+#include <ring-led/ring-led.h>
 
 AppState *appState;
 
@@ -27,7 +29,7 @@ void setup() {
   } else {
     ringLed->setCredentialsProvidedColor();
     Serial.println("WiFi credentials found.");
-    appState = new RingLedApp(ssid, password);
+    appState = new RingLedApp(ssid, password, ringLed);
   }
 }
 

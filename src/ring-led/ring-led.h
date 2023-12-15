@@ -7,6 +7,7 @@ public:
   void setCredentialsMissingColor();
   void setSiteConnectedColor();
   void setCredentialsProvidedColor();
+  void onWifiError();
 };
 
 #endif

@@ -46,6 +46,13 @@ void ringLedStateTask(void *parameter) {
       backFading(0, 200, 255, 2);
       vTaskDelay(pdMS_TO_TICKS(100));
       break;
+    case WIFI_CONNECTION_ERROR:
+      // fade with red
+      fading(255, 0, 0, 2);
+      vTaskDelay(pdMS_TO_TICKS(100));
+      backFading(255, 0, 0, 2);
+      vTaskDelay(pdMS_TO_TICKS(100));
+      break;
     }
 
     // Serial.println("Counter: " + String(counter++));

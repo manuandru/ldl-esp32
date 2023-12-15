@@ -15,6 +15,7 @@ RingLedApp::RingLedApp(String ssid, String password, RingLed *ringLed) {
 
   if (WiFi.status() != WL_CONNECTED) {
     Serial.println("Failed to connect to WiFi");
+    ringLed->onWifiError();
     return;
   }
 

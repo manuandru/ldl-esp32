@@ -12,7 +12,6 @@ void handleClientTask(void *parameter) {
 }
 
 APWebServer::APWebServer(RingLed *ringLed) {
-
   this->ringLed = ringLed;
   this->ringLed->setCredentialsMissingColor();
 

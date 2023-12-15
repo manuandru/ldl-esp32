@@ -29,3 +29,9 @@ void RingLed::setCredentialsProvidedColor() {
   state = CREDENTIALS_PROVIDED;
   xSemaphoreGive(mutex);
 }
+
+void RingLed::onWifiError() {
+  xSemaphoreTake(mutex, portMAX_DELAY);
+  state = WIFI_CONNECTION_ERROR;
+  xSemaphoreGive(mutex);
+}
