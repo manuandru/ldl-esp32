@@ -27,7 +27,7 @@ void setup() {
     Serial.println("No WiFi credentials found.");
     appState = new APWebServer(ringLed);
   } else {
-    ringLed->setCredentialsProvidedColor();
+    ringLed->onCredentialsProvided();
     Serial.println("WiFi credentials found.");
     appState = new RingLedApp(ssid, password, ringLed);
   }

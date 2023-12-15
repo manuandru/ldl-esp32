@@ -13,7 +13,7 @@ void handleClientTask(void *parameter) {
 
 APWebServer::APWebServer(RingLed *ringLed) {
   this->ringLed = ringLed;
-  this->ringLed->setCredentialsMissingColor();
+  this->ringLed->onCredentialsMissing();
 
   WiFi.softAP(ssid, password);
   IPAddress myIP = WiFi.softAPIP();
@@ -32,7 +32,7 @@ APWebServer::APWebServer(RingLed *ringLed) {
 }
 
 void APWebServer::handleRoot() {
-  this->ringLed->setSiteConnectedColor();
+  this->ringLed->onSiteConnected();
   server.send(200, "text/html", html);
 }
 

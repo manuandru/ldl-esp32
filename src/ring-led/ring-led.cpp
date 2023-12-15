@@ -12,19 +12,19 @@ RingLed::RingLed() {
   xTaskCreate(ringLedStateTask, "RingLed", 10000, NULL, 1, NULL);
 }
 
-void RingLed::setCredentialsMissingColor() {
+void RingLed::onCredentialsMissing() {
   xSemaphoreTake(mutex, portMAX_DELAY);
   state = CREDENTIALS_MISSING;
   xSemaphoreGive(mutex);
 }
 
-void RingLed::setSiteConnectedColor() {
+void RingLed::onSiteConnected() {
   xSemaphoreTake(mutex, portMAX_DELAY);
   state = SITE_CONNECTED;
   xSemaphoreGive(mutex);
 }
 
-void RingLed::setCredentialsProvidedColor() {
+void RingLed::onCredentialsProvided() {
   xSemaphoreTake(mutex, portMAX_DELAY);
   state = CREDENTIALS_PROVIDED;
   xSemaphoreGive(mutex);

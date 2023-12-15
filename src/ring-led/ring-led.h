@@ -4,9 +4,9 @@
 class RingLed {
 public:
   RingLed();
-  void setCredentialsMissingColor();
-  void setSiteConnectedColor();
-  void setCredentialsProvidedColor();
+  void onCredentialsMissing();
+  void onSiteConnected();
+  void onCredentialsProvided();
   void onWifiError();
 };
 
