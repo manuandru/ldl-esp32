@@ -18,6 +18,7 @@ RingLedApp::RingLedApp(String ssid, String password, RingLed *ringLed) {
     ringLed->onWifiError();
     return;
   }
-
+  ringLed->onWifiConnected();
+  delay(2000);
   Serial.println("Connected to WiFi");
 }

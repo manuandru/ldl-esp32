@@ -8,6 +8,7 @@ public:
   void onSiteConnected();
   void onCredentialsProvided();
   void onWifiError();
+  void onWifiConnected();
 };
 
 #endif

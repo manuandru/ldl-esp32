@@ -35,3 +35,9 @@ void RingLed::onWifiError() {
   state = WIFI_CONNECTION_ERROR;
   xSemaphoreGive(mutex);
 }
+
+void RingLed::onWifiConnected() {
+  xSemaphoreTake(mutex, portMAX_DELAY);
+  state = WIFI_CONNECTION_SUCCESSFUL;
+  xSemaphoreGive(mutex);
+}
