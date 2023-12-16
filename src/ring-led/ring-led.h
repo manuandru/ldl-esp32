@@ -5,12 +5,19 @@ class RingLed {
 public:
   RingLed();
   void onStart();
+
   void onCredentialsMissing();
   void onSiteConnected();
   void onCredentialsProvided();
+
   void onWifiError();
   void onWifiConnected();
+
   void onWaitingForInteraction();
+  void onInteractionStart();
+  void onInteractionUpdate(float progress);
+  void onMessageSent();
+  void onPasswordReset();
 };
 
 #endif

@@ -11,11 +11,17 @@ enum RingLedState {
   SITE_CONNECTED,
   CREDENTIALS_PROVIDED,
   WIFI_CONNECTION_ERROR,
-  WIFI_CONNECTION_SUCCESSFUL
+  WIFI_CONNECTION_SUCCESSFUL,
+  WAITING_FOR_INTERACTION,
+  INTERACTION_START,
+  INTERACTION_UPDATE,
+  MESSAGE_SENT,
+  PASSWORD_RESET
 };
 extern SemaphoreHandle_t mutex;
 extern Adafruit_NeoPixel ring;
 extern RingLedState state;
+extern float interactionProgress;
 
 void ringLedStateTask(void *parameter);
 

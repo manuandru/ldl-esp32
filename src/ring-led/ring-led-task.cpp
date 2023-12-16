@@ -9,6 +9,7 @@
 Adafruit_NeoPixel ring(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 SemaphoreHandle_t mutex = xSemaphoreCreateMutex();
 RingLedState state = START;
+float interactionProgress = 0.0;
 
 void colorWipe(uint32_t color, int wait);
 void reverseColorWipe(uint32_t color, int wait);
@@ -27,6 +28,7 @@ void ringLedStateTask(void *parameter) {
     switch (currentState) {
     case START:
       ring.clear();
+      ring.show();
       vTaskDelay(pdMS_TO_TICKS(100));
       break;
     case CREDENTIALS_MISSING:
@@ -59,6 +61,38 @@ void ringLedStateTask(void *parameter) {
       vTaskDelay(pdMS_TO_TICKS(50));
       backFading(0, 255, 0, 1);
       vTaskDelay(pdMS_TO_TICKS(50));
+      break;
+    case WAITING_FOR_INTERACTION:
+      ring.clear();
+      ring.show();
+      vTaskDelay(pdMS_TO_TICKS(25));
+      break;
+    case INTERACTION_START:
+      ring.clear();
+      ring.show();
+      vTaskDelay(pdMS_TO_TICKS(25));
+      break;
+    case INTERACTION_UPDATE:
+      ring.clear();
+      for (int i = 0; i < ring.numPixels() * interactionProgress; i++) {
+        ring.setPixelColor(i, ring.Color(255, 50, 0));
+      }
+      ring.show();
+      vTaskDelay(pdMS_TO_TICKS(5));
+      break;
+    case MESSAGE_SENT:
+      // Blink with green
+      theaterChase(ring.Color(0, 255, 0), 50);
+      xSemaphoreTake(mutex, portMAX_DELAY);
+      state = WAITING_FOR_INTERACTION;
+      xSemaphoreGive(mutex);
+      break;
+    case PASSWORD_RESET:
+      // Blink with red
+      theaterChase(ring.Color(255, 0, 0), 100);
+      xSemaphoreTake(mutex, portMAX_DELAY);
+      state = WAITING_FOR_INTERACTION;
+      xSemaphoreGive(mutex);
       break;
     }
 

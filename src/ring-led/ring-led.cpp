@@ -48,4 +48,34 @@ void RingLed::onWifiConnected() {
   xSemaphoreGive(mutex);
 }
 
-void RingLed::onWaitingForInteraction() { this->onStart(); }
+void RingLed::onWaitingForInteraction() {
+  xSemaphoreTake(mutex, portMAX_DELAY);
+  state = WAITING_FOR_INTERACTION;
+  xSemaphoreGive(mutex);
+}
+
+void RingLed::onInteractionStart() {
+  xSemaphoreTake(mutex, portMAX_DELAY);
+  state = INTERACTION_START;
+  interactionProgress = 0.0;
+  xSemaphoreGive(mutex);
+}
+
+void RingLed::onInteractionUpdate(float progress) {
+  xSemaphoreTake(mutex, portMAX_DELAY);
+  state = INTERACTION_UPDATE;
+  interactionProgress = progress;
+  xSemaphoreGive(mutex);
+}
+
+void RingLed::onMessageSent() {
+  xSemaphoreTake(mutex, portMAX_DELAY);
+  state = MESSAGE_SENT;
+  xSemaphoreGive(mutex);
+}
+
+void RingLed::onPasswordReset() {
+  xSemaphoreTake(mutex, portMAX_DELAY);
+  state = PASSWORD_RESET;
+  xSemaphoreGive(mutex);
+}
