@@ -7,7 +7,7 @@
 
 class RingLedApp : public AppState {
 private:
-  const int CONNECTION_ATTEMPTS = 5;
+  const int CONNECTION_ATTEMPTS = 10;
 
 public:
   RingLedApp(String ssid, String password, RingLed *ringLed);
