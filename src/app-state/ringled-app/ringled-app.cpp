@@ -1,6 +1,12 @@
 #include "ringled-app.h"
+#include "task/pressure-detection.h"
+#include "util/no-wifi-handler/no-wifi-handler.h"
+#include "util/normal-handler/normal-handler.h"
+#include "util/pressure-handler.h"
 #include <Arduino.h>
 #include <WiFi.h>
+
+PressureHandler *pressureHandler;
 
 RingLedApp::RingLedApp(String ssid, String password, RingLed *ringLed) {
 
@@ -16,9 +22,15 @@ RingLedApp::RingLedApp(String ssid, String password, RingLed *ringLed) {
   if (WiFi.status() != WL_CONNECTED) {
     Serial.println("Failed to connect to WiFi");
     ringLed->onWifiError();
-    return;
+    pressureHandler = new NoWifiHandler(ringLed);
+  } else {
+    Serial.println("Connected to WiFi");
+    ringLed->onWifiConnected();
+    pressureHandler = new NormalHandler(ringLed);
+    delay(2000);
+    ringLed->onWaitingForInteraction();
   }
-  ringLed->onWifiConnected();
-  delay(2000);
-  Serial.println("Connected to WiFi");
+
+  xTaskCreate(pressureDetectionTask, "pressureDetectionTask", 10000,
+              pressureHandler, 1, NULL);
 }

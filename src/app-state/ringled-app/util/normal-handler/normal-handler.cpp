@@ -2,10 +2,7 @@
 
 NormalHandler::NormalHandler(RingLed *ringLed) { this->ringLed = ringLed; };
 
-void NormalHandler::onStart() {
-  Serial.println("Interaction started");
-  this->ringLed->onInteractionStart();
-}
+void NormalHandler::onStart() { this->ringLed->onInteractionStart(); }
 
 void NormalHandler::onUpdate(int difference) {
   if (difference > NO_UPDATE_STATE_THRESHOLD) {
@@ -18,5 +15,5 @@ void NormalHandler::onUpdate(int difference) {
 void NormalHandler::onShortPress() { this->ringLed->onMessageSent(); }
 
 void NormalHandler::onMiddlePress() {
-  // Nothing to do
+  this->ringLed->onWaitingForInteraction();
 }

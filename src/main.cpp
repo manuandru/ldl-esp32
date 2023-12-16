@@ -20,13 +20,12 @@ void setup() {
   String password = preferences.getString("password", "");
   preferences.end();
 
-  Serial.println("ssid: " + ssid);
-  Serial.println("password: " + password);
-
   if (ssid.length() == 0 && password.length() == 0) {
     Serial.println("No WiFi credentials found.");
     appState = new APWebServer(ringLed);
   } else {
+    Serial.println("ssid: " + ssid);
+    Serial.println("password: " + password);
     ringLed->onCredentialsProvided();
     Serial.println("WiFi credentials found.");
     appState = new RingLedApp(ssid, password, ringLed);

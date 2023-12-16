@@ -2,9 +2,7 @@
 
 NoWifiHandler::NoWifiHandler(RingLed *ringLed) { this->ringLed = ringLed; };
 
-void NoWifiHandler::onStart() {
-  // Nothing to do here
-}
+void NoWifiHandler::onStart() { this->ringLed->onInteractionStart(); }
 
 void NoWifiHandler::onUpdate(int difference) {
   float progress = float(difference) / float(LONG_PRESS_MILLIS);
@@ -13,4 +11,4 @@ void NoWifiHandler::onUpdate(int difference) {
 
 void NoWifiHandler::onShortPress() { this->ringLed->onWifiError(); }
 
-void NoWifiHandler::onMiddlePress() { this->onShortPress(); }
+void NoWifiHandler::onMiddlePress() { ESP.restart(); }
