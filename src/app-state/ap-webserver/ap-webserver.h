@@ -14,9 +14,9 @@ public:
   void handleNotFound();
 
 private:
-  const char *ssid = "ESP32-Access-Point";
-  const char *password = "12345678";
   RingLed *ringLed;
+  const char *ap_ssid = "ESP32-Access-Point";
+  const char *ap_password = "12345678";
 
   String html = R"(
 <!DOCTYPE html>

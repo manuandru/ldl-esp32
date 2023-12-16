@@ -1,9 +1,9 @@
 #include "ring-led-task.h"
+#include "config.h"
 #include "freertos/FreeRTOS.h"
 #include <Adafruit_NeoPixel.h>
 #include <Arduino.h>
 
-#define LED_PIN 25
 #define LED_COUNT 12
 
 Adafruit_NeoPixel ring(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);

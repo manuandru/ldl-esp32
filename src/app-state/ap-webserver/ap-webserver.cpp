@@ -1,4 +1,5 @@
 #include "ap-webserver.h"
+#include "config.h"
 #include <Arduino.h>
 #include <Preferences.h>
 #include <WebServer.h>
@@ -15,7 +16,7 @@ APWebServer::APWebServer(RingLed *ringLed) {
   this->ringLed = ringLed;
   this->ringLed->onCredentialsMissing();
 
-  WiFi.softAP(ssid, password);
+  WiFi.softAP(ap_ssid, ap_password);
   IPAddress myIP = WiFi.softAPIP();
   Serial.print("AP IP address: ");
   Serial.println(myIP);
