@@ -47,3 +47,5 @@ void RingLed::onWifiConnected() {
   state = WIFI_CONNECTION_SUCCESSFUL;
   xSemaphoreGive(mutex);
 }
+
+void RingLed::onWaitingForInteraction() { this->onStart(); }

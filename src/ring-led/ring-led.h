@@ -10,6 +10,7 @@ public:
   void onCredentialsProvided();
   void onWifiError();
   void onWifiConnected();
+  void onWaitingForInteraction();
 };
 
 #endif
