@@ -12,6 +12,12 @@ RingLed::RingLed() {
   xTaskCreate(ringLedStateTask, "RingLed", 10000, NULL, 1, NULL);
 }
 
+void RingLed::onStart() {
+  xSemaphoreTake(mutex, portMAX_DELAY);
+  state = START;
+  xSemaphoreGive(mutex);
+}
+
 void RingLed::onCredentialsMissing() {
   xSemaphoreTake(mutex, portMAX_DELAY);
   state = CREDENTIALS_MISSING;

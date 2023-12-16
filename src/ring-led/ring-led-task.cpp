@@ -8,7 +8,7 @@
 
 Adafruit_NeoPixel ring(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 SemaphoreHandle_t mutex = xSemaphoreCreateMutex();
-RingLedState state = STARTING;
+RingLedState state = START;
 
 void colorWipe(uint32_t color, int wait);
 void reverseColorWipe(uint32_t color, int wait);
@@ -25,7 +25,7 @@ void ringLedStateTask(void *parameter) {
     xSemaphoreGive(mutex); // Release the mutex
 
     switch (currentState) {
-    case STARTING:
+    case START:
       ring.clear();
       vTaskDelay(pdMS_TO_TICKS(100));
       break;

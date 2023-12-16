@@ -4,6 +4,7 @@
 class RingLed {
 public:
   RingLed();
+  void onStart();
   void onCredentialsMissing();
   void onSiteConnected();
   void onCredentialsProvided();

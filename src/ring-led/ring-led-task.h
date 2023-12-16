@@ -6,7 +6,7 @@
 #include <freertos/FreeRTOS.h>
 
 enum RingLedState {
-  STARTING,
+  START,
   CREDENTIALS_MISSING,
   SITE_CONNECTED,
   CREDENTIALS_PROVIDED,
