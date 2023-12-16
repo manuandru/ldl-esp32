@@ -1,5 +1,6 @@
 #include "pressure-handler.h"
 #include <Arduino.h>
+#include <Preferences.h>
 
 PressureHandler::PressureHandler(RingLed *ringLed) { this->ringLed = ringLed; }
 
@@ -38,5 +39,13 @@ void PressureHandler::onShortPress() {
 
 void PressureHandler::onLongPress() {
   ringLed->onPasswordReset();
-  // TODO: REMOVE CREDENTIALS
+
+  Preferences preferences;
+  preferences.begin("wifi", false);
+  preferences.remove("ssid");
+  preferences.remove("password");
+  preferences.end();
+
+  delay(2000);
+  ESP.restart();
 }
