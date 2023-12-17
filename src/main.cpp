@@ -26,7 +26,7 @@ void setup() {
   } else {
     Serial.println("ssid: " + ssid);
     Serial.println("password: " + password);
-    ringLed->onCredentialsProvided();
+    ringLed->onConnecting();
     Serial.println("WiFi credentials found.");
     appState = new RingLedApp(ssid, password, ringLed);
   }
