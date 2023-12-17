@@ -50,5 +50,5 @@
     "cinttypes": "cpp",
     "esp_netif.h": "c"
   },
-  "cSpell.words": ["Adafruit", "APIP", "RINGLED", "WEBSERVER"]
+  "cSpell.words": ["Adafruit", "APIP", "PROGMEM", "RINGLED", "WEBSERVER"]
 }
