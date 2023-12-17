@@ -2,6 +2,7 @@
 #define CONNECTION_MANAGER_H
 
 #include <Arduino.h>
+#include <ring-led/ring-led.h>
 
 #define MQTT_BROKER "cd891f594732455c997c86db1c234e10.s1.eu.hivemq.cloud"
 #define MQTT_PORT 8883
@@ -11,11 +12,12 @@
 
 class ConnectionManager {
 public:
-  ConnectionManager();
+  ConnectionManager(RingLed *ringLed);
   void loop();
   void publishAsync();
 
 private:
+  RingLed *ringLed;
   String clientId;
   const SemaphoreHandle_t mutex = xSemaphoreCreateMutex();
   boolean messageShouldBeSent = false;

@@ -94,6 +94,12 @@ void ringLedStateTask(void *parameter) {
       state = WAITING_FOR_INTERACTION;
       xSemaphoreGive(mutex);
       break;
+    case SOMEONE_ELSE_INTERACTING:
+      rainbow(5);
+      xSemaphoreTake(mutex, portMAX_DELAY);
+      state = WAITING_FOR_INTERACTION;
+      xSemaphoreGive(mutex);
+      break;
     }
 
     // Serial.println("Counter: " + String(counter++));

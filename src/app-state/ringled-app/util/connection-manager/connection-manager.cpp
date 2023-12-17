@@ -6,7 +6,8 @@
 WiFiClientSecure espClient;
 PubSubClient client(espClient);
 
-ConnectionManager::ConnectionManager() {
+ConnectionManager::ConnectionManager(RingLed *ringLed) {
+  this->ringLed = ringLed;
   this->clientId = "lamp-" + String(random(0xffff), HEX);
   espClient.setCACert(root_ca);
   client.setServer(MQTT_BROKER, MQTT_PORT);
@@ -31,6 +32,7 @@ void ConnectionManager::messageHandler(char *topic, byte *payload,
     Serial.println("Message received from self");
   } else {
     Serial.println("Message received from other");
+    this->ringLed->onSomeoneElseInteracting();
   }
 }
 

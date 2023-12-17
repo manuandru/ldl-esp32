@@ -79,3 +79,9 @@ void RingLed::onPasswordReset() {
   state = PASSWORD_RESET;
   xSemaphoreGive(mutex);
 }
+
+void RingLed::onSomeoneElseInteracting() {
+  xSemaphoreTake(mutex, portMAX_DELAY);
+  state = SOMEONE_ELSE_INTERACTING;
+  xSemaphoreGive(mutex);
+}

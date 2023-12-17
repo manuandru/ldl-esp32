@@ -18,6 +18,8 @@ public:
   void onInteractionUpdate(float progress);
   void onMessageSent();
   void onPasswordReset();
+
+  void onSomeoneElseInteracting();
 };
 
 #endif

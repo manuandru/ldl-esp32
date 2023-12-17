@@ -16,7 +16,8 @@ enum RingLedState {
   INTERACTION_START,
   INTERACTION_UPDATE,
   MESSAGE_SENT,
-  PASSWORD_RESET
+  PASSWORD_RESET,
+  SOMEONE_ELSE_INTERACTING
 };
 extern SemaphoreHandle_t mutex;
 extern Adafruit_NeoPixel ring;
