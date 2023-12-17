@@ -1,6 +1,10 @@
 #include "normal-handler.h"
 
-NormalHandler::NormalHandler(RingLed *ringLed) { this->ringLed = ringLed; };
+NormalHandler::NormalHandler(RingLed *ringLed,
+                             ConnectionManager *connectionManager) {
+  this->ringLed = ringLed;
+  this->connectionManager = connectionManager;
+};
 
 void NormalHandler::onStart() { this->ringLed->onInteractionStart(); }
 
@@ -12,7 +16,10 @@ void NormalHandler::onUpdate(int difference) {
   }
 }
 
-void NormalHandler::onShortPress() { this->ringLed->onMessageSent(); }
+void NormalHandler::onShortPress() {
+  this->ringLed->onMessageSent();
+  this->connectionManager->publishAsync();
+}
 
 void NormalHandler::onMiddlePress() {
   this->ringLed->onWaitingForInteraction();
