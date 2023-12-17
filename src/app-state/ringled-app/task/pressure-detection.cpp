@@ -1,7 +1,7 @@
 #include "pressure-detection.h"
 #include "config.h"
 #include <Arduino.h>
-#include <app-state/ringled-app/util/pressure-handler.h>
+#include <app-state/ringled-app/util/pressure-handler/pressure-handler.h>
 
 void pressureDetectionTask(void *parameter) {
   PressureHandler *handler = (PressureHandler *)parameter;

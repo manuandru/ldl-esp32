@@ -1,8 +1,8 @@
 #include "ringled-app.h"
 #include "task/pressure-detection.h"
-#include "util/no-wifi-handler/no-wifi-handler.h"
-#include "util/normal-handler/normal-handler.h"
-#include "util/pressure-handler.h"
+#include "util/pressure-handler/no-wifi-handler/no-wifi-handler.h"
+#include "util/pressure-handler/normal-handler/normal-handler.h"
+#include "util/pressure-handler/pressure-handler.h"
 #include <Arduino.h>
 #include <WiFi.h>
 
