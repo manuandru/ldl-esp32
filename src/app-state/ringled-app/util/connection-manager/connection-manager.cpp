@@ -38,14 +38,19 @@ void ConnectionManager::messageHandler(char *topic, byte *payload,
 
 void ConnectionManager::reconnect() {
   while (!client.connected()) {
+    this->ringLed->onConnecting();
     Serial.print("Attempting MQTT connection...");
     if (client.connect(clientId.c_str(), MQTT_USERNAME, MQTT_PASSWORD)) {
-      Serial.println("connected");
       client.subscribe(MQTT_TOPIC);
+      Serial.println("connected");
+      this->ringLed->onConnectionSuccess();
+      vTaskDelay(pdMS_TO_TICKS(2000));
+      this->ringLed->onWaitingForInteraction();
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
-      delay(1000);
+      this->ringLed->onConnectionError();
+      vTaskDelay(pdMS_TO_TICKS(2000));
     }
   }
 }

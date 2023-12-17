@@ -41,21 +41,21 @@ void ringLedStateTask(void *parameter) {
       backFading(255, 50, 0, 2);
       vTaskDelay(pdMS_TO_TICKS(100));
       break;
-    case CREDENTIALS_PROVIDED:
+    case CONNECTING:
       // fade with light blue
       fading(0, 200, 255, 2);
       vTaskDelay(pdMS_TO_TICKS(100));
       backFading(0, 200, 255, 2);
       vTaskDelay(pdMS_TO_TICKS(100));
       break;
-    case WIFI_CONNECTION_ERROR:
+    case CONNECTION_ERROR:
       // fade with red
       fading(255, 0, 0, 2);
       vTaskDelay(pdMS_TO_TICKS(100));
       backFading(255, 0, 0, 2);
       vTaskDelay(pdMS_TO_TICKS(100));
       break;
-    case WIFI_CONNECTION_SUCCESSFUL:
+    case CONNECTION_SUCCESSFUL:
       // fade with green
       fading(0, 255, 0, 1);
       vTaskDelay(pdMS_TO_TICKS(50));

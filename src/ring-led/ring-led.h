@@ -8,10 +8,10 @@ public:
 
   void onCredentialsMissing();
   void onSiteConnected();
-  void onCredentialsProvided();
 
-  void onWifiError();
-  void onWifiConnected();
+  void onConnecting();
+  void onConnectionError();
+  void onConnectionSuccess();
 
   void onWaitingForInteraction();
   void onInteractionStart();

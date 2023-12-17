@@ -30,21 +30,21 @@ void RingLed::onSiteConnected() {
   xSemaphoreGive(mutex);
 }
 
-void RingLed::onCredentialsProvided() {
+void RingLed::onConnecting() {
   xSemaphoreTake(mutex, portMAX_DELAY);
-  state = CREDENTIALS_PROVIDED;
+  state = CONNECTING;
   xSemaphoreGive(mutex);
 }
 
-void RingLed::onWifiError() {
+void RingLed::onConnectionError() {
   xSemaphoreTake(mutex, portMAX_DELAY);
-  state = WIFI_CONNECTION_ERROR;
+  state = CONNECTION_ERROR;
   xSemaphoreGive(mutex);
 }
 
-void RingLed::onWifiConnected() {
+void RingLed::onConnectionSuccess() {
   xSemaphoreTake(mutex, portMAX_DELAY);
-  state = WIFI_CONNECTION_SUCCESSFUL;
+  state = CONNECTION_SUCCESSFUL;
   xSemaphoreGive(mutex);
 }
 

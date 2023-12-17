@@ -9,6 +9,6 @@ void NoWifiHandler::onUpdate(int difference) {
   this->ringLed->onInteractionUpdate(progress);
 }
 
-void NoWifiHandler::onShortPress() { this->ringLed->onWifiError(); }
+void NoWifiHandler::onShortPress() { this->ringLed->onConnectionError(); }
 
 void NoWifiHandler::onMiddlePress() { ESP.restart(); }
