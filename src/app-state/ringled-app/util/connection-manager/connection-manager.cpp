@@ -1,4 +1,5 @@
 #include "connection-manager.h"
+#include "config.h"
 #include "freertos/FreeRTOS.h"
 #include <PubSubClient.h>
 #include <WiFiClientSecure.h>

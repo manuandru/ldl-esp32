@@ -5,7 +5,6 @@
 
 class NoWifiHandler : public PressureHandler {
 protected:
-  RingLed *ringLed;
   void onStart();
   void onUpdate(int difference);
   void onShortPress();

@@ -4,12 +4,6 @@
 #include <Arduino.h>
 #include <ring-led/ring-led.h>
 
-#define MQTT_BROKER "cd891f594732455c997c86db1c234e10.s1.eu.hivemq.cloud"
-#define MQTT_PORT 8883
-#define MQTT_USERNAME "test0"
-#define MQTT_PASSWORD "12341234Aa"
-#define MQTT_TOPIC "ringled"
-
 class ConnectionManager {
 public:
   ConnectionManager(RingLed *ringLed);

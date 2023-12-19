@@ -9,7 +9,6 @@ private:
   ConnectionManager *connectionManager;
 
 protected:
-  RingLed *ringLed;
   void onStart();
   void onUpdate(int difference);
   void onShortPress();

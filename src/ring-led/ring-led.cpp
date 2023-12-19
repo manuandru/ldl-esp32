@@ -3,7 +3,7 @@
 #include <Adafruit_NeoPixel.h>
 #include <Arduino.h>
 
-#define LED_BRIGHTNESS 100
+#define LED_BRIGHTNESS 255
 
 RingLed::RingLed() {
   ring.begin();
