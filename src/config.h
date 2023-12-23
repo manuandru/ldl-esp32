@@ -1,6 +1,10 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+// AP Credentials
+#define AP_SSID "Long Distance Lamp"
+#define AP_PASSWORD ""
+
 // Pins
 #define PRESSURE_DETECTION_PIN 12
 #define LED_PIN 25

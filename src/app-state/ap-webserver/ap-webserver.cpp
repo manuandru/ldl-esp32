@@ -9,6 +9,7 @@ void handleClientTask(void *parameter) {
   WebServer *server = (WebServer *)parameter;
   while (1) {
     server->handleClient();
+    vTaskDelay(pdMS_TO_TICKS(1));
   }
 }
 
@@ -16,7 +17,7 @@ APWebServer::APWebServer(RingLed *ringLed) {
   this->ringLed = ringLed;
   this->ringLed->onCredentialsMissing();
 
-  WiFi.softAP(ap_ssid, ap_password);
+  WiFi.softAP(AP_SSID, AP_PASSWORD);
   IPAddress myIP = WiFi.softAPIP();
   Serial.print("AP IP address: ");
   Serial.println(myIP);
